@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPage, selectUsers } from '../../redux/selectors';
-import { increasePage, loadTweets } from '../../redux/UsersSlice';
+import { increasePage } from '../../redux/UsersSlice';
 import { useEffect } from 'react';
 import { fetchUsers } from '../../redux/operations';
 
