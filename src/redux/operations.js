@@ -5,9 +5,11 @@ axios.defaults.baseURL = 'https://64a00ee2ed3c41bdd7a6f3de.mockapi.io/';
 
 export const fetchUsers = createAsyncThunk(
   'users/fetchAll',
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
-      const { data } = await axios.get('/users');
+      const { data } = await axios.get(
+        `/users?completed=false&page=${page}&limit=3`
+      );
       console.log(data);
       return data;
     } catch (err) {

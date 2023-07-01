@@ -1,9 +1,22 @@
-import { useSelector } from 'react-redux';
-import { selectUsers } from '../../redux/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectPage, selectUsers } from '../../redux/selectors';
+import { increasePage, loadTweets } from '../../redux/UsersSlice';
+import { useEffect } from 'react';
+import { fetchUsers } from '../../redux/operations';
 
 export const UsersList = () => {
   const users = useSelector(selectUsers);
-  console.log(users);
+  const page = useSelector(selectPage);
+  console.log(page);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUsers(page));
+  }, [dispatch, page]);
+  const handleLoadMore = () => {
+    dispatch(increasePage());
+  };
+
   // const isLoading = useSelector(selectIsLoading);
   return (
     <div>
@@ -17,6 +30,7 @@ export const UsersList = () => {
           <button>Folow</button>
         </ul>
       ))}
+      <button onClick={handleLoadMore}>Load more</button>
     </div>
   );
 };

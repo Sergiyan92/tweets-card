@@ -4,6 +4,7 @@ import { fetchUsers } from './operations';
 const initialState = {
   users: {
     items: [],
+    page: 1,
     isLoading: false,
     error: null,
   },
@@ -13,17 +14,20 @@ const initialState = {
 const usersSlice = createSlice({
   name: 'users',
   initialState,
-  // reducers: {
-  //   filteredContacts: (state, { payload }) => {
-  //     state.filter = payload;
-  //   },
-  // },
+  reducers: {
+    increasePage: state => {
+      state.users.page += 1;
+    },
+    // filteredContacts: (state, { payload }) => {
+    //   state.filter = payload;
+    // },
+  },
   extraReducers: {
     [fetchUsers.pending]: state => {
       state.users.isLoading = true;
     },
     [fetchUsers.fulfilled]: (state, { payload }) => {
-      state.users.items = payload;
+      state.users.items.push(...payload);
       state.users.isLoading = false;
       state.error = null;
     },
@@ -35,4 +39,5 @@ const usersSlice = createSlice({
 });
 
 // export const { filteredContacts } = contactsSlice.actions;
+export const { increasePage, loadTweets } = usersSlice.actions;
 export const usersReducer = usersSlice.reducer;
