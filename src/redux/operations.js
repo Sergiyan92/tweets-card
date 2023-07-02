@@ -10,7 +10,18 @@ export const fetchUsers = createAsyncThunk(
       const { data } = await axios.get(
         `/users?completed=false&page=${page}&limit=3`
       );
-      console.log(data);
+
+      return data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+export const updateTask = createAsyncThunk(
+  'users/updateTask',
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await axios.put(`/users/${id}`);
       return data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);

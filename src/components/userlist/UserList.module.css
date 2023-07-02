@@ -1,0 +1,80 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 168px;
+  gap: 33px;
+}
+.item {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 0;
+  padding-bottom: 36px;
+  padding-top: 178px;
+  gap: 5px;
+  border-radius: 20px;
+  background-image: url(../../images/Following.png);
+  background-repeat: no-repeat;
+  background-size: 110%;
+  background-position-x: -20px;
+  background-position-y: -10px;
+}
+.button_follow {
+  display: flex;
+  width: 196px;
+  padding: 14px 28px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  border-radius: 10px;
+  color: #373737;
+  font-size: 18px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
+}
+.title {
+  margin-right: 5px;
+  color: #ebd8ff;
+  font-size: 20px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+}
+.followers {
+  display: flex;
+  align-items: center;
+  padding-bottom: 26px;
+}
+.tweets {
+  display: flex;
+  align-items: center;
+  margin-top: 26px;
+}
+.img {
+  width: 62px;
+  height: 62px;
+  border: 10px solid rgba(235, 216, 255, 1);
+  border-radius: 50%;
+}
+.line {
+  width: 145px;
+  height: 8px;
+  background: rgb(235, 216, 255);
+  box-shadow: 0px 3.4369285106658936px 2.5776965618133545px 0px #fbf8ff inset,
+    0px 3.4369285106658936px 3.4369285106658936px 0px rgba(0, 0, 0, 0.06),
+    0px -1.7184642553329468px 3.4369285106658936px 0px #ae7be3 inset;
+}
+.avatar {
+  display: flex;
+  align-items: center;
+}
