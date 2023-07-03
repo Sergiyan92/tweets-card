@@ -15,13 +15,11 @@ const App = () => {
   }, [dispatch, page]);
 
   return (
-    <div className={css.app}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/tweets" element={<Tweets />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/tweets" element={<Tweets />} />
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 };
 
