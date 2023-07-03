@@ -9,18 +9,29 @@ export const User = props => {
   const [followers, setFollowers] = useState(currentUser.followers);
 
   useEffect(() => {
-    const followingStatus = localStorage.getItem('followingStatus');
+    const followingStatus = localStorage.getItem(
+      `followingStatus_${currentUser.id}`
+    );
     if (followingStatus === 'true') {
       setIsFollowing(true);
     }
-  }, []);
+    const savedFollowersCount = localStorage.getItem(
+      `followersCount_${currentUser.id}`
+    );
+    if (savedFollowersCount) {
+      setFollowers(parseInt(savedFollowersCount, 10));
+    }
+  }, [currentUser.id]);
   const handleFollowClick = () => {
     setIsFollowing(prevFollowing => !prevFollowing);
     setFollowers(prevFollowers =>
       isFollowing ? prevFollowers - 1 : prevFollowers + 1
     );
-    localStorage.setItem('followingStatus', !isFollowing);
+    localStorage.setItem(`followingStatus_${currentUser.id}`, !isFollowing);
   };
+  useEffect(() => {
+    localStorage.setItem(`followersCount_${currentUser.id}`, followers);
+  }, [followers, currentUser.id]);
   const options = {
     style: 'decimal',
     minimumFractionDigits: 0,

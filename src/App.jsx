@@ -1,5 +1,3 @@
-// import { UsersList } from './components/userlist/UserList';
-// import css from './App.module.css';
 import { useEffect } from 'react';
 import { fetchUsers } from './redux/operations';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +5,7 @@ import { selectPage } from './redux/selectors';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Home } from './page/Home/Home';
 import { Tweets } from './page/Tweets/Tweets';
+import css from './App.module.css';
 
 const App = () => {
   const page = useSelector(selectPage);
@@ -16,16 +15,13 @@ const App = () => {
   }, [dispatch, page]);
 
   return (
-    // <Routes>
-    //   <div className={css.app}>
-    //     <UsersList />
-    //   </div>
-    // </Routes>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/tweets" element={<Tweets />} />
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+    <div className={css.app}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/tweets" element={<Tweets />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </div>
   );
 };
 

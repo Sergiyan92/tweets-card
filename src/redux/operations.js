@@ -8,7 +8,7 @@ export const fetchUsers = createAsyncThunk(
   async (page, thunkAPI) => {
     try {
       const { data } = await axios.get(
-        `/users?completed=false&page=${page}&limit=3`
+        `/users?completed=true&page=${page}&limit=3`
       );
 
       return data;
