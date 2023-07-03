@@ -16,7 +16,7 @@ const App = () => {
   return (
     <div className={css.app}>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route index element={<Home />} />
         <Route path="/tweets" element={<Tweets />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
@@ -25,11 +25,3 @@ const App = () => {
 };
 
 export default App;
-
-// {/* <Router>
-//       <Switch>
-//         <Route exact path="/" component={Home} />
-//         <Route path="/tweets" component={Tweets} />
-//         <Redirect to="/" /> {/* Перенаправлення на домашню сторінку, якщо маршрут не знайдено */}
-//       </Switch>
-//     </Router> */}
