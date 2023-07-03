@@ -5,11 +5,9 @@ const initialState = {
   users: {
     items: [],
     page: 1,
-    // isLoading: false,
     isFollowing: false,
     error: null,
   },
-  // filter: '',
 };
 
 const usersSlice = createSlice({
@@ -31,9 +29,6 @@ const usersSlice = createSlice({
       const increment = action.payload ? -1 : 1;
       state.users.items.followers = increment;
     },
-    // filteredContacts: (state, { payload }) => {
-    //   state.filter = payload;
-    // },
   },
   extraReducers: {
     [fetchUsers.pending]: state => {
@@ -55,7 +50,6 @@ const usersSlice = createSlice({
       state.users.items = state.users.items.map(el =>
         el.id === payload.id ? { ...el, followers: payload.followers + 1 } : el
       );
-      // state.users.isFollowing = true;
     },
     [updateTask.rejected]: (state, { payload }) => {
       state.users.error = payload;
@@ -64,7 +58,6 @@ const usersSlice = createSlice({
   },
 });
 
-// export const { filteredContacts } = contactsSlice.actions;
 export const { increasePage, toggleFollowing, increaseFollowersCount } =
   usersSlice.actions;
 export const usersReducer = usersSlice.reducer;

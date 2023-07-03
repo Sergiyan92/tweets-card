@@ -1,7 +1,5 @@
 .home {
-  margin-left: 10px;
-  margin-right: 10px;
-  max-width: calc(100vw - 48px);
+  width: 100%;
   height: 720px;
   background-image: url(../../images/social_tetwork.jpg);
   background-repeat: no-repeat;

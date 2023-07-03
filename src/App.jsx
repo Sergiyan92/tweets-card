@@ -5,7 +5,7 @@ import { selectPage } from './redux/selectors';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Home } from './page/Home/Home';
 import { Tweets } from './page/Tweets/Tweets';
-
+import css from './App.module.css';
 const App = () => {
   const page = useSelector(selectPage);
   const dispatch = useDispatch();
@@ -14,11 +14,13 @@ const App = () => {
   }, [dispatch, page]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/tweets" element={<Tweets />} />
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+    <div className={css.app}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/tweets" element={<Tweets />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </div>
   );
 };
 

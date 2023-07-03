@@ -1,8 +1,9 @@
 .app {
   display: flex;
+  justify-content: center;
   padding-right: 15px;
   padding-left: 15px;
-  max-width: calc(100vw - 48px);
+  width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: 16px;
   margin-top: 0;
