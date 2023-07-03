@@ -5,7 +5,6 @@ import { selectPage } from './redux/selectors';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Home } from './page/Home/Home';
 import { Tweets } from './page/Tweets/Tweets';
-import css from './App.module.css';
 
 const App = () => {
   const page = useSelector(selectPage);
