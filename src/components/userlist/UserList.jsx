@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectUsers } from '../../redux/selectors';
-import { increasePage } from '../../redux/usersSlice';
+import { increasePage } from '../../redux/UsersSlice';
 import { updateTask } from '../../redux/operations';
 
 import css from './UserList.module.css';
