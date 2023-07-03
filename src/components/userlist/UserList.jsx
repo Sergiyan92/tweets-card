@@ -1,21 +1,29 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectUsers, selectisFollowing } from '../../redux/selectors';
-import { increasePage, toggleFollowing } from '../../redux/UsersSlice';
+import { selectUsers } from '../../redux/selectors';
+import { increasePage } from '../../redux/usersSlice';
 import { updateTask } from '../../redux/operations';
 
 import css from './UserList.module.css';
+import { useEffect, useState } from 'react';
 
 export const UsersList = () => {
   const users = useSelector(selectUsers);
-  // const page = useSelector(selectPage);
-  const isFollowing = useSelector(selectisFollowing);
-
   const dispatch = useDispatch();
+  const [isFollowing, setIsFollowing] = useState(false);
 
-  // useEffect(() => {
-  //   dispatch(fetchUsers(page));
-  // }, [dispatch, page]);
+  useEffect(() => {
+    // const followingStatus = localStorage.getItem('followingStatus');
+    // if (followingStatus === 'true') {
+    //   setIsFollowing(true);
+    // }
+  }, []);
+  const handleFollowClick = () => {
+    // Зміна стану фоловінгу
+    setIsFollowing(prevFollowing => !prevFollowing);
+    // Збереження стану фоловінгу
+    // localStorage.setItem('followingStatus', !isFollowing);
+  };
   const handleLoadMore = () => {
     dispatch(increasePage());
   };
@@ -45,9 +53,7 @@ export const UsersList = () => {
           </li>
           <button
             className={css.button_follow}
-            onClick={() =>
-              dispatch(updateTask(user.id), dispatch(toggleFollowing()))
-            }
+            onClick={() => dispatch(updateTask(user.id), handleFollowClick())}
             style={{
               background: isFollowing ? '#5CD3A8' : '#EBD8FF',
             }}
