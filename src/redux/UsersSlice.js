@@ -5,7 +5,7 @@ const initialState = {
   users: {
     items: [],
     page: 1,
-    isLoading: false,
+    // isLoading: false,
     isFollowing: false,
     error: null,
   },
