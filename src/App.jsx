@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
-import { fetchUsers } from './redux/operations';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectPage } from './redux/selectors';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { fetchUsers } from './redux/operations';
+import { selectPage } from './redux/selectors';
 import { Home } from './page/Home/Home';
 import { Tweets } from './page/Tweets/Tweets';
 import css from './App.module.css';
+
 const App = () => {
   const page = useSelector(selectPage);
   const dispatch = useDispatch();

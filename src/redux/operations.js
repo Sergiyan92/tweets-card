@@ -10,45 +10,9 @@ export const fetchUsers = createAsyncThunk(
       const { data } = await axios.get(
         `/users?completed=true&page=${page}&limit=3`
       );
-
       return data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
     }
   }
 );
-export const updateTask = createAsyncThunk(
-  'users/updateTask',
-  async (id, thunkAPI) => {
-    try {
-      const { data } = await axios.put(`/users/${id}`);
-      return data;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
-
-// export const addContact = createAsyncThunk(
-//   'users/addContact',
-//   async (contact, thunkAPI) => {
-//     try {
-//       const { data } = await axios.post('/users', contact);
-//       return data;
-//     } catch (err) {
-//       return thunkAPI.rejectWithValue(err.message);
-//     }
-//   }
-// );
-
-// export const deleteContact = createAsyncThunk(
-//   'users/deleteContact',
-//   async (id, thunkAPI) => {
-//     try {
-//       const { data } = await axios.delete(`/users/${id}`);
-//       return data;
-//     } catch (err) {
-//       return thunkAPI.rejectWithValue(err.message);
-//     }
-//   }
-// );

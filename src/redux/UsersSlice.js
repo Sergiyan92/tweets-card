@@ -1,11 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchUsers, updateTask } from './operations';
+import { fetchUsers } from './operations';
 const initialState = {
   users: {
     items: [],
     page: 1,
-    isFollowing: false,
     error: null,
   },
 };
@@ -19,11 +18,6 @@ const usersSlice = createSlice({
     },
     toggleFollowing: state => {
       state.users.isFollowing = !state.users.isFollowing;
-    },
-    updateTask: (state, { payload }) => {
-      state.users.items = state.users.items.map(el =>
-        el.id === payload.id ? { ...el, followers: payload.followers - 1 } : el
-      );
     },
     increaseFollowersCount: (state, action) => {
       const increment = action.payload ? -1 : 1;
@@ -40,18 +34,6 @@ const usersSlice = createSlice({
       state.error = null;
     },
     [fetchUsers.rejected]: (state, { payload }) => {
-      state.users.error = payload;
-      state.users.isLoading = false;
-    },
-    [updateTask.pending]: state => {
-      state.users.isLoading = true;
-    },
-    [updateTask.fulfilled]: (state, { payload }) => {
-      state.users.items = state.users.items.map(el =>
-        el.id === payload.id ? { ...el, followers: payload.followers + 1 } : el
-      );
-    },
-    [updateTask.rejected]: (state, { payload }) => {
       state.users.error = payload;
       state.users.isLoading = false;
     },

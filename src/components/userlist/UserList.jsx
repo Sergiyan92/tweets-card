@@ -1,10 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUsers } from '../../redux/selectors';
 import { increasePage } from '../../redux/UsersSlice';
-
-import css from './UserList.module.css';
-
 import { User } from '../user/User';
+import css from './UserList.module.css';
 
 export const UsersList = () => {
   const users = useSelector(selectUsers);
@@ -16,9 +14,7 @@ export const UsersList = () => {
     <>
       <div className={css.list}>
         {users?.map(user => (
-          <ul>
-            <User key={user.id} user={user} />
-          </ul>
+          <User key={user.id} user={user} />
         ))}
       </div>
       <button className={css.btm_loadmore} onClick={handleLoadMore}>
