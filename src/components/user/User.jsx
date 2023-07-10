@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import css from './User.module.css';
 import logo from '../../images/logo.svg';
 import { Link } from 'react-router-dom';
+
 export const User = props => {
   const user = props;
   const currentUser = user.user;
@@ -9,53 +10,70 @@ export const User = props => {
   const [followers, setFollowers] = useState(currentUser.followers);
 
   useEffect(() => {
-    const followingStatus = localStorage.getItem(
-      `followingStatus_${currentUser.id}`
+    const userData = JSON.parse(
+      localStorage.getItem(`userData_${currentUser.id}`)
     );
-    if (followingStatus === 'true') {
-      setIsFollowing(true);
-    }
-    const savedFollowersCount = localStorage.getItem(
-      `followersCount_${currentUser.id}`
-    );
-    if (savedFollowersCount) {
-      setFollowers(parseInt(savedFollowersCount, 10));
+    if (userData) {
+      setIsFollowing(userData.isFollowing);
+      setFollowers(userData.followers);
     }
   }, [currentUser.id]);
+
   const handleFollowClick = () => {
     setIsFollowing(prevFollowing => !prevFollowing);
     setFollowers(prevFollowers =>
       isFollowing ? prevFollowers - 1 : prevFollowers + 1
     );
-    localStorage.setItem(`followingStatus_${currentUser.id}`, !isFollowing);
+
+    const userData = {
+      isFollowing: !isFollowing,
+      followers: followers,
+    };
+    localStorage.setItem(
+      `userData_${currentUser.id}`,
+      JSON.stringify(userData)
+    );
   };
+
   useEffect(() => {
-    localStorage.setItem(`followersCount_${currentUser.id}`, followers);
-  }, [followers, currentUser.id]);
+    const userData = {
+      isFollowing: isFollowing,
+      followers: followers,
+    };
+    localStorage.setItem(
+      `userData_${currentUser.id}`,
+      JSON.stringify(userData)
+    );
+  }, [isFollowing, followers, currentUser.id]);
+
   const options = {
     style: 'decimal',
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   };
+
   return (
-    <li className={css.background}>
+    <div className={css.background}>
       <Link to="/">
         <img src={logo} alt="logo" className={css.logo} />
       </Link>
-      <div className={css.item}>
-        <div className={css.avatar}>
+
+      <ul className={css.item}>
+        <li className={css.avatar}>
+          <hr className={css.line} />
           <img className={css.img} src={currentUser.avatar} alt="avatar" />
-        </div>
-        <div className={css.tweets}>
-          <p className={css.title}>{currentUser.tweets}</p>
+          <hr className={css.line} />
+        </li>
+        <li className={css.tweets}>
+          <span className={css.title}>{currentUser.tweets}</span>
           <p className={css.title}>Tweets</p>
-        </div>
-        <div className={css.followers}>
-          <p className={css.title}>
+        </li>
+        <li className={css.followers}>
+          <span className={css.title}>
             {followers.toLocaleString('en-US', options)}
-          </p>
-          <p className={css.title}>Folowers</p>
-        </div>
+          </span>
+          <p className={css.title}>Followers</p>
+        </li>
         <button
           className={css.button_follow}
           onClick={handleFollowClick}
@@ -65,7 +83,7 @@ export const User = props => {
         >
           {isFollowing ? 'Following' : 'Follow'}
         </button>
-      </div>
-    </li>
+      </ul>
+    </div>
   );
 };
