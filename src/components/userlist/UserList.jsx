@@ -3,23 +3,37 @@ import { selectUsers } from '../../redux/selectors';
 import { increasePage } from '../../redux/UsersSlice';
 import { User } from '../user/User';
 import css from './UserList.module.css';
+import { useEffect, useState } from 'react';
 
 export const UsersList = () => {
   const users = useSelector(selectUsers);
+  const [showBtn, setShowBtn] = useState(false);
   const dispatch = useDispatch();
+  useEffect(() => {
+    try {
+      const fetchImages = () => {
+        setShowBtn(users.length < 12);
+      };
+      fetchImages();
+    } catch (error) {
+      console.log(error);
+    }
+  });
   const handleLoadMore = () => {
     dispatch(increasePage());
   };
   return (
     <>
-      <ul className={css.list}>
+      <div className={css.list}>
         {users?.map(user => (
           <User key={user.id} user={user} />
         ))}
-      </ul>
-      <button className={css.btm_loadmore} onClick={handleLoadMore}>
-        Load more
-      </button>
+      </div>
+      {showBtn && (
+        <button className={css.btm_loadmore} onClick={handleLoadMore}>
+          Load more
+        </button>
+      )}
     </>
   );
 };
