@@ -29,3 +29,6 @@
   line-height: normal;
   text-transform: uppercase;
 }
+.btm_loadmore:hover {
+  color: #bb5cd3;
+}

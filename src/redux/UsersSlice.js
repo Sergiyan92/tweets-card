@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { fetchUsers } from './operations';
+
 const initialState = {
   users: {
     items: [],
@@ -8,7 +9,6 @@ const initialState = {
     error: null,
   },
 };
-
 const usersSlice = createSlice({
   name: 'users',
   initialState,

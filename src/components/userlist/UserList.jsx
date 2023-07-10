@@ -12,11 +12,11 @@ export const UsersList = () => {
   };
   return (
     <>
-      <div className={css.list}>
+      <ul className={css.list}>
         {users?.map(user => (
           <User key={user.id} user={user} />
         ))}
-      </div>
+      </ul>
       <button className={css.btm_loadmore} onClick={handleLoadMore}>
         Load more
       </button>
