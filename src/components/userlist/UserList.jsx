@@ -11,10 +11,10 @@ export const UsersList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     try {
-      const fetchImages = () => {
+      const fetchTweets = () => {
         setShowBtn(users.length < 12);
       };
-      fetchImages();
+      fetchTweets();
     } catch (error) {
       console.log(error);
     }
